@@ -11,27 +11,21 @@ const { Option } = Select;
 
 function AdminSendTokenRow(props) {
 
-    const [email] = useState("");
+    const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [amount, setAmount] = useState(0);
     const [price, setPrice] = useState(0);
     const [selected, setSelected] = useState(false);
     const [tokenAddress, setTokenAddress] = useState(0);
-    const [publicKey] = useState(localStorage.getItem("publicKey"));
+    const [publicKey,setPublicKey] = useState(localStorage.getItem("publicKey"));
     const [status, setStatus] = useState();
 
     const serverUrl = SERVER_URL;
 
-    // const getTokenPrice = useCallback(async () => {
-    //     let price = await getTokenPriceInUsd(props.network, props.transaction.token);
-    //     setPrice(price)
-    // }, [props.network, props.transaction.token]);
-
-
     useEffect(() => {
         setTokenAddress("0xcbAe2a4625c5CB99391D8F1a0F5121B3E5A176bb")
         getTokenPrice();
-    }, [getTokenPrice])
+    }, [])
 
     useEffect(() => {
         setAmount(props.transaction.amount * price / (0.008 * 1e18))
